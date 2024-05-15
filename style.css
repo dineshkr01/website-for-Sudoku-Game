@@ -1,0 +1,27 @@
+div{
+    height: 100px;
+    width: 100px;
+    background-color: #12dae9;
+    border-width: 2px;
+    border-style: solid;
+    border-color: green;
+    text-align: center;
+    /*border-radius: 50%;*/
+    /*border-radius: 20px;*/
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin: 20px;
+
+}
+
+h1{
+    width: 200px;
+    height: 50px;
+    background-color: aquamarine;
+    border-width: 3px;
+    border-style: dashed;
+    border-color: black;
+    text-align: center;
+}

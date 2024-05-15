@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUDOKU</title>
+    <link rel="stylesheet" href="sudoku_main_game_pagecss.css">
+    <script src="sudoku_main_page_javascript.js" defer></script>
+</head>
+
+<body>
+
+
+    <div id="myModal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="changabletext">Hello, this is a modal window!</p>
+        </div>
+    </div>
+
+
+
+
+    <div id="maincontainer">
+        <div id="timerbox">
+            <p>TIMER</p>
+            <div id="timer">00:00:00</div>
+        </div>
+        <div id="difficultybox"></div>
+        <table id="puzzle-grid"></table>
+        <button id="solve-button">Solve</button>
+        <button id="submit-button">Submit</button>
+        <button id="homepagebutton" style="display: none;">HOME PAGE</button>
+    </div>
+
+</body>
+
+</html>
