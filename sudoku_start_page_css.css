@@ -1,0 +1,288 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+}
+
+.hamburger-menu {
+    display: inline-block;
+    cursor: pointer;
+    margin: 16px;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #49599a;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+    color: white;
+}
+
+
+.sideOptions {
+    font-size: x-large;
+    color: white;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.navbar {
+    background-color: #49599a;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+}
+
+.SudokuText {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.navButtonsBox {
+    width: 100vw;
+    display: flex;
+    justify-content: end;
+    padding-right: 1rem;
+}
+
+#PauseBtn {
+    margin-left: 1rem;
+}
+
+.navButtons {
+    cursor: pointer;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 20;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transition: top 0.5s ease;
+    border: 2px solid black;
+    width: 50%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    max-width: 500px;
+}
+
+@media (max-width: 400px) {
+    .modal {
+        width: 85%;
+    }
+}
+
+#closeOverlay {
+    display: flex;
+    justify-content: end;
+    font-size: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.levelOptions {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+
+input[type="radio"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+#Continue {
+    margin-top: 10px;
+    text-align: center;
+    background-color: #0d6dfd;
+    color: white;
+    height: 40px;
+    font-size: 2rem;
+    border-radius: 5px;
+}
+
+#Continue:hover {
+    cursor: pointer;
+    background-color: #044ebe;
+}
+
+
+
+table {
+    border: 2px solid #000000;
+    border-spacing: 0;
+    border-collapse: collapse;
+    max-width: 370px;
+}
+
+
+td {
+    border: 1px solid #000000;
+    text-align: center;
+}
+
+td input {
+    color: #000000;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    width: 100%;
+    height: 41.1px;
+    font-size: 24px;
+    background-color: white;
+    outline: none;
+}
+
+input:disabled {
+    background-color: #bbdefb;
+}
+
+tr:nth-child(3n) {
+    border-bottom: 4px solid #000000;
+}
+
+tr:nth-child(3n + 1) {
+    border-top: 4px solid #000000;
+}
+
+td:nth-child(3n) {
+    border-right: 4px solid #000000;
+}
+
+td:nth-child(3n + 1) {
+    border-left: 4px solid #000000;
+}
+
+#maincontainer {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#difficultytext {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+#difficultybox {
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: monospace;
+}
+
+
+#timer {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+#Mistakes {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.greytext {
+    color: rgb(105, 105, 105);
+    font-family: monospace;
+}
+
+
+.numberOpt {
+    font-size: 2rem;
+    display: inline-block;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    visibility: hidden;
+}
+
+@media (min-width: 600px) {
+    table {
+        max-width: 600px;
+    }
+    
+    td input {
+        height: 66.6px;
+    }
+    
+}
+
+
+@media (max-width: 374px) {
+    table {
+        max-width: 250px;
+    }
+    
+    td input {
+        height: 27.7px;
+    }
+    
+}
+
+#info{
+    margin-bottom: 10px;
+}
+
+#SubmitBtn{
+    display: none;
+}
+
+#selectLevelFirst{
+    padding: 0.5rem;
+    border-radius: 5px;
+}
