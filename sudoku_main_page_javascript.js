@@ -76,19 +76,22 @@ Continue.addEventListener('click', () => {
 });
 
 
-restart.addEventListener('mouseover', () => {
-    if (!puzzlegame) {
-        restart.style.cursor = 'not-allowed';
-    } else {
-        restart.style.cursor = 'pointer';
-    }
-});
+// restart.addEventListener('mouseover', () => {
+//     if (!puzzlegame) {
+//         restart.style.cursor = 'not-allowed';
+//     } else {
+//         restart.style.cursor = 'pointer';
+//     }
+// });
 
 
 restart.addEventListener('click', () => {
     document.getElementById('sidebar').style.width = '0';
     if (!puzzlegame) {
-        restart.style.cursor = 'not-allowed';
+        OverLay.style.display = 'block';
+        alertdisplay.style.top = '1%';
+        alertMessage.innerHTML = 'Please start a new game before attempting to solve.';
+        closeAlert.innerHTML = 'Close';
     } else {
         MainControlFunction(1);
     }
@@ -150,21 +153,13 @@ function MainControlFunction(reset) {
 
 
 
-solveButton.addEventListener('mouseover', () => {
-    if (!puzzlegame) {
-        solveButton.style.cursor = 'not-allowed';
-    } else {
-        solveButton.style.cursor = 'pointer';
-    }
-});
-
-
-
 solveButton.addEventListener("click", () => {
     document.getElementById('sidebar').style.width = '0';
     if (!puzzlegame) {
         OverLay.style.display = 'block';
         alertdisplay.style.top = '1%';
+        alertMessage.innerHTML = 'Please start a new game before attempting to restart.';
+        closeAlert.innerHTML = 'Close';
     }
     else {
         info.style.display = 'none';
