@@ -263,7 +263,19 @@ td:nth-child(3n + 1) {
 }
 
 
-@media (max-width: 374px) {
+@media (max-width: 375px) {
+    table {
+        max-width: 320px;
+    }
+    
+    td input {
+        height: 35.5px;
+    }
+    
+}
+
+
+@media (max-width: 319px) {
     table {
         max-width: 250px;
     }
