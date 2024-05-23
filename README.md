@@ -1,7 +1,7 @@
 # website-for-Sudoku_Game
 
 **Description:**
-This website provides a user-friendly interface for playing Sudoku puzzles online. Built using HTML, CSS, and JavaScript, it offers various functionalities such as starting a new game, restarting the current game, and solving the puzzle.
+This is my personal project. In this project, I have applied my knowledge of HTML, CSS, and JavaScript to build a website for playing Sudoku puzzles online. It provides a user-friendly interface with functionalities such as starting a new game, restarting the current game, and solving the puzzle.
 
 **Features:**
 
