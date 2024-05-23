@@ -5,8 +5,8 @@ This is my personal project. In this project, I have applied my knowledge of HTM
 
 **Features:**
 
-New Game: Start a new Sudoku game with a randomly generated puzzle.
-Restart: Restart the current game, allowing the user to begin afresh.
+New Game: Start a new Sudoku game with a randomly generated puzzle.                                                                                                                                                                      
+Restart: Restart the current game, allowing the user to begin afresh.                                                                                                                             
 Solve: Provides the option to automatically solve the current puzzle, offering assistance when needed.
 How to Use:
 
