@@ -53,9 +53,9 @@ CloseOverlay.addEventListener('click', () => {
 });
 
 function blinkBorder() {
-    if(timer_select_level == 4)return;
-    if(timer_select_level%2 == 0)
-    selectLevelFirst.style.border = '2px solid orange';
+    if (timer_select_level == 4) return;
+    if (timer_select_level % 2 == 0)
+        selectLevelFirst.style.border = '2px solid orange';
     else selectLevelFirst.style.border = '2px solid white';
     timer_select_level++;
     setTimeout(() => {
@@ -267,7 +267,7 @@ function fillcellsinSudokuGrid(puzzleGrid, grid) {
                 input.value = grid[i][j].toString();
                 input.style.backgroundColor = "skyblue";
                 input.readOnly = true;
-                input.style.cursor = "pointer";
+                input.style.cursor = "not-allowed";
             } else {
                 input.style.cursor = "pointer";
                 input.readOnly = true;
@@ -295,9 +295,7 @@ function handleInput(event) {
     const input = event.target;
     const row = input.parentNode.parentNode.rowIndex;
     const col = input.parentNode.cellIndex;
-    if (input.style.backgroundColor !== 'skyblue' &&
-        input.style.backgroundColor !== 'red'
-    ) {
+    if (input.style.backgroundColor != 'skyblue') {
         selected_row = row;
         selected_col = col;
         if (prev_selected_col == -1 && prev_selected_row == -1) {
@@ -306,13 +304,30 @@ function handleInput(event) {
             prev_selected_col = selected_col;
         }
         else {
-            puzzleGrid.rows[prev_selected_row].cells[prev_selected_col].querySelector("input").style.backgroundColor = 'white';
-            puzzleGrid.rows[selected_row].cells[selected_col].querySelector("input").style.backgroundColor = 'rgba(128, 128, 128, 0.445)';
+            puzzleGrid.rows[prev_selected_row].cells[prev_selected_col]
+            .querySelector("input").style.backgroundColor = 'white';
+            puzzleGrid.rows[selected_row].cells[selected_col]
+            .querySelector("input").style.backgroundColor = 'rgba(128, 128, 128, 0.445)';
             prev_selected_row = selected_row;
             prev_selected_col = selected_col;
         }
-        selectedNUMBER = puzzleGrid.rows[row].cells[col].querySelector("input").value;
-        colorsubGridandRowCol(row, col, 0);
+
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                const cellInput = puzzleGrid.rows[i].cells[j].querySelector("input");
+                cellInput.style.color = 'black';
+            }
+        }
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                selectedNUMBER = puzzleGrid.rows[i].cells[j].querySelector("input").value;
+                const cellInput = puzzleGrid.rows[i].cells[j].querySelector("input");
+                if (cellInput.style.backgroundColor != 'skyblue') {
+                    console.log("It is a white Cell!!! at : " + i + " " + j + 'of value : ' + selectedNUMBER);
+                    colorsubGridandRowCol(selected_row, selected_col, 0, i, j);
+                }
+            }
+        }
     }
 }
 
@@ -332,11 +347,11 @@ closeAlert.addEventListener('click', () => {
 const numberElements = Array.from(document.getElementsByClassName('numberOpt'));
 
 function updateNumberStyles(selectednumber) {
-    let continue_flag = 1, indexed_to_change = -1;
+    console.log("####" + 1);
+    let indexed_to_change = -1;
     numberElements.forEach((element, index) => {
         if (selectednumber === index + 1) {
             indexed_to_change = index;
-            selectedNUMBER = index + 1;
             element.style.backgroundColor = '#0d6dfd';
             element.style.color = 'white';
         } else {
@@ -344,19 +359,32 @@ function updateNumberStyles(selectednumber) {
             element.style.color = 'black';
         }
     });
-
+    console.log("####" + 2);
+    if (selected_row > -1 && selected_col > - 1)
+        puzzleGrid.rows[selected_row].cells[selected_col].querySelector("input").value = selectednumber;
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            const cellInput = puzzleGrid.rows[i].cells[j].querySelector("input");
+            cellInput.style.color = 'black';
+        }
+    }
+    console.log("####" + 3);
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            const cellInput = puzzleGrid.rows[i].cells[j].querySelector("input");
+            if (cellInput.style.backgroundColor != "skyblue") {
+                selectedNUMBER = puzzleGrid.rows[i].cells[j].querySelector("input").value;
+                console.log("It is a white Cell!!! in update Number function !!!");
+                colorsubGridandRowCol(selected_row, selected_col, 1, i, j);
+            }
+        }
+    }
+    console.log("####" + 4);
 
     setTimeout(() => {
-        selectedNUMBER = 0;
         numberElements[indexed_to_change].style.backgroundColor = 'white';
         numberElements[indexed_to_change].style.color = 'black';
-        continue_flag = 1;
-    }, 300);
-
-    if (selectednumber != 0 && continue_flag) {
-        puzzleGrid.rows[selected_row].cells[selected_col].querySelector("input").value = selectednumber;
-        colorsubGridandRowCol(selected_row, selected_col, 1);
-    }
+    }, 100);
 }
 
 
@@ -368,10 +396,11 @@ numberElements.forEach((element, index) => {
 });
 
 
-function colorsubGridandRowCol(row, col, mistake_inc_flag) {
-    console.log("I am increasing updates !!!" + mistake_inc_flag);
-    let resultRow = Math.floor(row / 3);
-    let resultCol = Math.floor(col / 3);
+function colorsubGridandRowCol(row, col, mistake_inc_flag, current_row, current_col) {
+    console.log("I am Color Cell function !!!");
+    empty_cells = 0;
+    let resultRow = Math.floor(current_row / 3);
+    let resultCol = Math.floor(current_col / 3);
     let isPresentinSub = false;
     let isPresentinRow = false;
     let isPresentinCol = false;
@@ -380,48 +409,52 @@ function colorsubGridandRowCol(row, col, mistake_inc_flag) {
         for (let j = 0; j < 9; j++) {
             if (puzzleGrid.rows[i].cells[j].querySelector("input").value == "")
                 empty_cells++;
-            if (i == selected_row && j == selected_col) continue;
-            if (puzzleGrid.rows[i].cells[j].querySelector("input").style.backgroundColor == 'white') continue;
-            const cellInput = puzzleGrid.rows[i].cells[j].querySelector("input");
-            if (cellInput.style.backgroundColor == 'skyblue') {
-                cellInput.style.color = 'black';
-            }
         }
     }
 
 
     for (let i = 3 * resultRow; i < 3 * resultRow + 3; i++) {
         for (let j = 3 * resultCol; j < 3 * resultCol + 3; j++) {
-            if (i == row && j == col) continue;
-            if (selectedNUMBER == puzzleGrid.rows[i].cells[j].querySelector("input").value) {
+            if (i == current_row && j == current_col) continue;
+            if (selectedNUMBER == puzzleGrid.rows[i].cells[j].querySelector("input").value
+                && row == current_row && col == current_col) {
                 puzzleGrid.rows[i].cells[j].querySelector("input").style.color = 'red';
+            }
+            if (selectedNUMBER == puzzleGrid.rows[i].cells[j].querySelector("input").value) {
                 isPresentinSub = true;
             }
         }
     }
 
     for (let i = 0; i < 9; i++) {
-        if (i == col) continue;
-        if (puzzleGrid.rows[row].cells[i].querySelector("input").value == selectedNUMBER) {
-            puzzleGrid.rows[row].cells[i].querySelector("input").style.color = 'red';
+        if (i == current_col) continue;
+        if (puzzleGrid.rows[current_row].cells[i].querySelector("input").value == selectedNUMBER
+            && row == current_row && col == current_col) {
+            puzzleGrid.rows[current_row].cells[i].querySelector("input").style.color = 'red';
+        }
+        if (puzzleGrid.rows[current_row].cells[i].querySelector("input").value == selectedNUMBER) {
             isPresentinRow = true;
         }
     }
 
     for (let i = 0; i < 9; i++) {
-        if (i == row) continue;
-        if (puzzleGrid.rows[i].cells[col].querySelector("input").value == selectedNUMBER) {
-            puzzleGrid.rows[i].cells[col].querySelector("input").style.color = 'red';
+        if (i == current_row) continue;
+        if (puzzleGrid.rows[i].cells[current_col].querySelector("input").value == selectedNUMBER
+            && row == current_row && col == current_col) {
+            puzzleGrid.rows[i].cells[current_col].querySelector("input").style.color = 'red';
+        }
+        if (puzzleGrid.rows[i].cells[current_col].querySelector("input").value == selectedNUMBER) {
             isPresentinCol = true;
         }
     }
 
     if (isPresentinSub || isPresentinRow || isPresentinCol) {
-        puzzleGrid.rows[row].cells[col].querySelector("input").style.color = 'red';
-        if (mistake_inc_flag)
+        puzzleGrid.rows[current_row].cells[current_col].querySelector("input").style.color = 'red';
+        if (mistake_inc_flag && row == current_row && col == current_col)
             mistakes++;
     } else {
-        puzzleGrid.rows[row].cells[col].querySelector("input").style.color = 'black';
+        console.log('Coloring the cell : black');
+        puzzleGrid.rows[current_row].cells[current_col].querySelector("input").style.color = 'black';
     }
     MistakesCount.innerText = mistakes;
     if (mistakes == 3) {
@@ -429,8 +462,8 @@ function colorsubGridandRowCol(row, col, mistake_inc_flag) {
         alertdisplay.style.top = '1%';
         alertMessage.innerHTML = 'You have made 3 mistakes. You lose!';
         closeAlert.innerHTML = 'Close';
-
     }
+    console.log("empty Cells : " + empty_cells);
     if (empty_cells == 0) {
         OverLay.style.display = 'block';
         alertdisplay.style.top = '1%';
