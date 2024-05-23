@@ -33,6 +33,7 @@ The solution will be displayed on the grid, providing guidance as needed.
 ![Screenshot (218)](https://github.com/dineshkr01/website-for-Sudoku-Game/assets/168981625/ab8bc5b0-7f73-4b8f-917c-94082a0bd427)
 ![Screenshot (219)](https://github.com/dineshkr01/website-for-Sudoku-Game/assets/168981625/54902c3b-12f6-4a06-ba94-d7b2438c82f2)
 ![Screenshot (220)](https://github.com/dineshkr01/website-for-Sudoku-Game/assets/168981625/96ed795d-c6fb-461d-a727-1b5da287827e)
+![Screenshot (225)](https://github.com/dineshkr01/website-for-Sudoku-Game/assets/168981625/b0a211c7-0777-4906-a7d5-9050f2c54d2a)
 ![Screenshot (221)](https://github.com/dineshkr01/website-for-Sudoku-Game/assets/168981625/ca1b17c3-22bf-407d-9487-7502ae1d3076)
 ![Screenshot (222)](https://github.com/dineshkr01/website-for-Sudoku-Game/assets/168981625/643b609c-85cc-49b3-96d0-acbb9c79de65)
 ![Screenshot (223)](https://github.com/dineshkr01/website-for-Sudoku-Game/assets/168981625/d55b7c87-82fb-4fe9-a7c2-f7d2dd9ae678)
