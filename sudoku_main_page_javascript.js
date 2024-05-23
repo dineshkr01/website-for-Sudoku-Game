@@ -44,7 +44,7 @@ document.getElementById('closebtn').addEventListener('click', function () {
 NewGame.addEventListener('click', () => {
     document.getElementById('sidebar').style.width = '0';
     OverLay.style.display = 'block';
-    Modal.style.top = '1%';
+    Modal.style.top = '20%';
 });
 
 CloseOverlay.addEventListener('click', () => {
@@ -89,7 +89,7 @@ restart.addEventListener('click', () => {
     document.getElementById('sidebar').style.width = '0';
     if (!puzzlegame) {
         OverLay.style.display = 'block';
-        alertdisplay.style.top = '1%';
+        alertdisplay.style.top = '20%';
         alertMessage.innerHTML = 'Please start a new game before attempting to solve.';
         closeAlert.innerHTML = 'Close';
     } else {
@@ -157,7 +157,7 @@ solveButton.addEventListener("click", () => {
     document.getElementById('sidebar').style.width = '0';
     if (!puzzlegame) {
         OverLay.style.display = 'block';
-        alertdisplay.style.top = '1%';
+        alertdisplay.style.top = '20%';
         alertMessage.innerHTML = 'Please start a new game before attempting to restart.';
         closeAlert.innerHTML = 'Close';
     }
@@ -459,14 +459,14 @@ function colorsubGridandRowCol(row, col, mistake_inc_flag, current_row, current_
     MistakesCount.innerText = mistakes;
     if (mistakes == 3) {
         OverLay.style.display = 'block';
-        alertdisplay.style.top = '1%';
+        alertdisplay.style.top = '20%';
         alertMessage.innerHTML = 'You have made 3 mistakes. You lose!';
         closeAlert.innerHTML = 'Close';
     }
     console.log("empty Cells : " + empty_cells);
-    if (empty_cells == 0) {
+    if (empty_cells == 0 && isPresentinSub && isPresentinRow && isPresentinCol) {
         OverLay.style.display = 'block';
-        alertdisplay.style.top = '1%';
+        alertdisplay.style.top = '20%';
         alertMessage.innerHTML = 'You have successfully completed the puzzle. You Won!';
         closeAlert.innerHTML = 'Close';
     }
